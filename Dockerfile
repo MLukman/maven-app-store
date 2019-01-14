@@ -11,7 +11,7 @@ RUN cd /src && \
     export MAVEN_OPTS="-Dmaven.repo.local=/src/maven.repository" && \
     mvn clean install -B && \
     cp $(ls -1t /src/target/*.jar | head -1) /app/ && \
-    if [[ ! -f "/app/configuration.yml" ]]; then cp /src/configuration.yml /app/ ; fi && \
+    if [ ! -f "/app/configuration.yml" ]; then cp /src/configuration.yml /app/ ; fi && \
     rm -fr /src
 
 CMD java -jar \
