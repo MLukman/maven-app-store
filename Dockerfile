@@ -9,12 +9,13 @@ COPY . /src
 RUN cd /src && \
     export MAVEN_OPTS="-Dmaven.repo.local=/src/maven.repository" && \
     mvn clean install -B && \
-    cp $(ls -1t /src/target/*.jar | head -1) /app/ && \
-    if [ ! -f "/app/configuration.yml" ]; then cp /src/configuration.yml /app/ ; fi && \
+    mkdir /appstore
+    cp $(ls -1t /src/target/*.jar | head -1) /appstore/ && \
+    cp $(ls -1t /src/*.yml | head -1) /appstore/ && \
+    cp /src/docker-run.sh /appstore/ && \
+    chmod +x /appstore/docker-run.sh
     rm -fr /src
 
 VOLUME /app
 
-CMD java -jar \
-    $(ls -1t *.jar | head -1) server \
-    configuration.yml
+CMD /appstore/docker-run.sh
