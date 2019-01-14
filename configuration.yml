@@ -1,0 +1,13 @@
+apps:
+#  omni-calendar:
+#    name: omni-calendar
+#    type: ANDROID
+#    repository: https://oss.sonatype.org/content/repositories/releases/com/3pillarglobal/labs/omni-calendar/
+
+server:
+  applicationConnectors:
+  - type: http 
+    port: 8090
+  adminConnectors:
+  - type: http
+    port: 9090
