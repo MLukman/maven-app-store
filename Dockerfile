@@ -2,7 +2,6 @@ FROM maven:3-jdk-8
 MAINTAINER anatilmizun@gmail.com
 EXPOSE 8090 9090
 
-VOLUME /app
 WORKDIR /app
 
 COPY . /src
@@ -13,6 +12,8 @@ RUN cd /src && \
     cp $(ls -1t /src/target/*.jar | head -1) /app/ && \
     if [ ! -f "/app/configuration.yml" ]; then cp /src/configuration.yml /app/ ; fi && \
     rm -fr /src
+
+VOLUME /app
 
 CMD java -jar \
     $(ls -1t *.jar | head -1) server \
