@@ -2,7 +2,7 @@
 
 <#macro content></#macro>
 
-<#macro relpath><#list 0..<pathLevel as i>../</#list></#macro>
+<#macro relpath base=0><#list base..<pathLevel as i>../</#list></#macro>
 
 <#macro html title>
 <!DOCTYPE html>
